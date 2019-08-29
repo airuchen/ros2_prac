@@ -1,2 +1,2 @@
 # ros2_prac
-Here is my ROS playground
+Here is my ROS2 playground
