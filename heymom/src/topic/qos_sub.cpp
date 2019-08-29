@@ -16,7 +16,12 @@ public:
 			{
 				RCLCPP_INFO(this->get_logger(), "I heard: [%s]", msg->data.c_str());
 			};
-		sub_ = this->create_subscription<std_msgs::msg::String>("chatter", rclcpp::SensorDataQoS(), callback);
+
+		rclcpp::QoS qos(rclcpp::KeepLast(7));
+		qos
+			.reliable()
+			.transient_local();
+		sub_ = this->create_subscription<std_msgs::msg::String>("topic", qos, callback);
 	}
 
 private:

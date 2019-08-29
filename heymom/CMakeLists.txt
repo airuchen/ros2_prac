@@ -31,8 +31,8 @@ find_package(std_msgs REQUIRED)
 #   ament_lint_auto_find_test_dependencies()
 # endif()
 
-add_executable(my_pub src/topic/my_pub.cpp)
-ament_target_dependencies(my_pub rclcpp std_msgs)
+add_executable(qos_pub src/topic/qos_pub.cpp)
+ament_target_dependencies(qos_pub rclcpp std_msgs)
 
 add_executable(my_sub src/topic/my_sub.cpp)
 ament_target_dependencies(my_sub rclcpp std_msgs)
@@ -40,17 +40,17 @@ ament_target_dependencies(my_sub rclcpp std_msgs)
 add_executable(pub_lamda src/topic/pub_lamda.cpp)
 ament_target_dependencies(pub_lamda rclcpp std_msgs)
 
-add_executable(best_effort_linstener src/topic/best_effort_linstener.cpp)
-ament_target_dependencies(best_effort_linstener rclcpp std_msgs)
+add_executable(qos_sub src/topic/qos_sub.cpp)
+ament_target_dependencies(qos_sub rclcpp std_msgs)
 
 add_executable(reuse_timer src/topic/reuse_timer.cpp)
 ament_target_dependencies(reuse_timer rclcpp std_msgs)
 
 install(TARGETS
-	my_pub
+	qos_pub
 	my_sub
 	pub_lamda
-	best_effort_linstener
+	qos_sub
 	reuse_timer
 	DESTINATION lib/${PROJECT_NAME}
 )

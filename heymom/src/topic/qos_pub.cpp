@@ -6,10 +6,6 @@
 
 using namespace std::chrono_literals;
 
-/* This example creates a subclass of Node and uses a fancy C++11 lambda
- * function to shorten the callback syntax, at the expense of making the
- * code somewhat more difficult to understand at first glance. */
-
 class MinimalPublisher : public rclcpp::Node
 {
 public:
@@ -24,9 +20,16 @@ public:
         this->publisher_->publish(message);
       };
     
+    // define QoS
     rclcpp::QoS qos(rclcpp::KeepLast(7));
+
+    // plugin desired QoS
+    qos
+	    //.best_effort()
+	    .reliable()
+	    .transient_local();
     publisher_ = this->create_publisher<std_msgs::msg::String>("topic", qos);
-    timer_ = this->create_wall_timer(500ms, timer_callback);
+    timer_ = this->create_wall_timer(1000ms, timer_callback);
   }
 
 private:
